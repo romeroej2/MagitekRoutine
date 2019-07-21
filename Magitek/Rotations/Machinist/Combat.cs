@@ -52,7 +52,10 @@ namespace Magitek.Rotations.Machinist
                 if (await Turret.AutomationQueen()) return true;
                 if (await Turret.Rook()) return true;
                 if (await Aoe.Flamethrower()) return true;
-                if (await Buff.Reassemble()) return true;
+
+                if (Core.Me.ClassLevel < Spells.Drill.LevelAcquired)
+                    if (await Buff.Reassemble()) return true;
+
                 if (await SingleTarget.GaussRound()) return true;
 
                 if (MachinistSettings.Instance.UseAoe)
@@ -66,7 +69,6 @@ namespace Magitek.Rotations.Machinist
                 
             if (await SingleTarget.Drill()) return true;
             if (await SingleTarget.AirAnchor()) return true;
-            if (await SingleTarget.HeatBlast()) return true;
 
             if (MachinistSettings.Instance.UseAoe)
             {
@@ -74,6 +76,7 @@ namespace Magitek.Rotations.Machinist
                 if (await Aoe.SpreadShot()) return true;
             }
 
+            if (await SingleTarget.HeatBlast()) return true;
             if (await SingleTarget.HotShot()) return true;
             if (await SingleTarget.CleanShot()) return true;
             if (await SingleTarget.SlugShot()) return true;
